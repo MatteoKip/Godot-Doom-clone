@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Materials/Dirty-stone.tres" type="Material" id=1]
+[ext_resource path="res://Assets/Materials/Stone-floor.tres" type="Material" id=2]
+
+[sub_resource type="CubeMesh" id=28]
+
+[sub_resource type="BoxShape" id=23]
+
+[sub_resource type="CubeMesh" id=29]
+material = ExtResource( 2 )
+
+[sub_resource type="BoxShape" id=27]
+extents = Vector3( 10, 1, 10 )
+
+[node name="Tiles" type="Spatial"]
+
+[node name="Walls" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
+use_in_baked_light = true
+mesh = SubResource( 28 )
+material/0 = ExtResource( 1 )
+
+[node name="StaticBody" type="StaticBody" parent="Walls"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Walls/StaticBody"]
+shape = SubResource( 23 )
+
+[node name="Floor" type="MeshInstance" parent="."]
+use_in_baked_light = true
+mesh = SubResource( 29 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Floor"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor/StaticBody"]
+transform = Transform( 0.1, 0, 0, 0, 1, 0, 0, 0, 0.1, 0, 0, 0 )
+shape = SubResource( 27 )
